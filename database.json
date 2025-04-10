@@ -1,0 +1,14 @@
+{   
+"dev":  {    
+	"driver": "pg",    
+	 "host": "127.0.0.1",    
+	  "database": "kirby_store",   
+	   "user": "postgres",     
+	   "password": "postgres" },
+	   "test":  {    
+	"driver": "pg",    
+	 "host": "127.0.0.1",    
+	  "database": "kirby_store_test",   
+	   "user": "postgres",     
+	   "password": "postgres" }
+}
