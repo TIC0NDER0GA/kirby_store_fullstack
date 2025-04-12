@@ -41,16 +41,17 @@ INSERT INTO Users (firstName, lastName, username, password) VALUES
 ('Red', 'Teal', 'kirby_red', '$2b$10$aZLJbDPwwNTUXgdE5v2jz.5iyDFB1Dxm4OdYrRjaBr/5hM9CwOjqO');
 
 
-INSERT INTO Products (name, stars, description) VALUES
-('Maxim Tomato', 10, 'A healing food that restores health.'),
-('Invincibility Candy', 5, 'A sweet treat that grants temporary invincibility.'),
-('Energy Drink', 4, 'A drink that boosts energy, restoring stamina.'),
-('Pep Brew', 7, 'A spicy brew that boosts speed and energy.'),
-('Star Rod', 30, 'A powerful rod that shoots stars to defeat enemies.'),
-('Hypernova Fruit', 20, 'A rare fruit that grants incredible powers.'),
-('Warp Star', 50, 'A star-shaped vehicle that transports to new places.'),
-('Beam Ability', 15, 'A power-up that allows shooting energy beams.'),
-('Fire Ability', 12, 'A fiery power that launches fireballs and creates flames.');
+INSERT INTO Products (name, path, stars, description) VALUES
+('Maxim Tomato', 'assets/images/MaximTomato.png', 10, 'A healing item that fully restores health.'),
+('Invincibility Candy', 'assets/images/Candy.png', 5, 'Grants temporary invincibility.'),
+('Energy Drink', 'assets/images/EnergyDrink.png', 4, 'Partially restores health.'),
+('Battery', 'assets/images/battery.png', 7, 'A power source used to activate machines and unlock areas.'),
+('Beam Ability', 'assets/images/beam.png', 15, 'Enables long-range energy attacks.'),
+('Fire Ability', 'assets/images/fire.png', 12, 'Unleashes flames and fireballs.'),
+('Smash Ability', 'assets/images/SSBB.png', 25, 'Combines multiple powerful techniques into one form.'),
+('Master Ability', 'assets/images/master.png', 30, 'A legendary ability that combines swordsmanship with energy waves.'),
+('Laser Ability', 'assets/images/laser.png', 14, 'Fires beams that bounce off surfaces.'),
+('Shock Ability', 'assets/images/shock.png', 13, 'Electrifies enemies with a burst of energy.');
 
 INSERT INTO Orders (user_id, status) VALUES 
 (1, 'active'),   -- Pink Kirby's Order

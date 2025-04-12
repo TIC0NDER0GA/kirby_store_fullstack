@@ -52,8 +52,12 @@ For end-to-end (e2e) testing, run:
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Copyright Disclaimer
 
-## Additional Resources
+This project includes visual assets from Kirby and the Amazing Mirror by [Original Creator/Company], which are copyrighted by their respective owners.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+These assets are used under the belief of **fair use**, for non-commercial, educational, and fan-based purposes only. No copyright infringement is intended. 
+
+If you are a copyright holder and have any concerns, please contact me and I will address them promptly.
+
+

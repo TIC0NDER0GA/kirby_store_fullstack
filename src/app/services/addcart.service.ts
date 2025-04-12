@@ -13,7 +13,7 @@ export class AddcartService {
 
   constructor(private http: HttpClient) { }
 
-  
+  ADDRESS: string = 'http://localhost:3000/';
   
   
   
@@ -38,9 +38,9 @@ export class AddcartService {
 
 
     if (oldQty < 1) {
-      return this.http.post<Order>('http://localhost:3000/orders/:id/products', query);
+      return this.http.post<Order>(`${this.ADDRESS}orders/:id/products`, query);
     } else {
-      return this.http.patch<Order>('http://localhost:3000/orders/:id/products', query);
+      return this.http.patch<Order>(`${this.ADDRESS}orders/:id/products`, query);
 
     }
 
@@ -62,7 +62,52 @@ export class AddcartService {
     }
   }
 
-  return this.http.post<Order>('http://localhost:3000/orders', query);
+  return this.http.post<Order>(`${this.ADDRESS}orders`, query);
+
+}
+
+deleteOrder = (order_id: number, order_status: string) : Observable<Order[]> => {
+  const query : OrderQueryRequest = {
+    query : '',
+  token : '',
+  filters  : {
+      id: 0,
+      name: '',
+      stars: 0,
+      description: order_status,
+      quantity: 0,
+      user_id: 0,
+      product_id: 0,
+      order_id: order_id
+  }
+}
+
+return this.http.delete<Order[]>(`${this.ADDRESS}orders`,
+  {body : query}
+);
+
+}
+
+
+completeOrder = (order_id: number, order_status: string) : Observable<Order[]> => {
+  const query : OrderQueryRequest = {
+    query : '',
+  token : '',
+  filters  : {
+      id: 0,
+      name: '',
+      stars: 0,
+      description: order_status,
+      quantity: 0,
+      user_id: 0,
+      product_id: 0,
+      order_id: order_id
+  }
+}
+
+return this.http.patch<Order[]>(`${this.ADDRESS}orders`,
+  {body : query}
+);
 
 }
 

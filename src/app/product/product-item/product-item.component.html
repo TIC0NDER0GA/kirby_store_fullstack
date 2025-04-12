@@ -3,7 +3,7 @@
 
 <h2>{{product.name}}</h2>
 <a routerLink="/">
-<img src={{product.path}} alt={{product.name}}>
+<img [src]="product.path" alt={{product.name}}>
 </a>
 <img src="" alt="star">
 <h2>{{product.stars}}</h2>

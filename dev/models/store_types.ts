@@ -41,6 +41,13 @@ type Order = {
     order_id?: number
 }
 
+type OrderDetails = {
+    name: string,
+    description: string,
+    quantity: number,
+    stars: number
+}
 
 
-export type {Product, User, Order};
+
+export type {Product, User, Order, OrderDetails};

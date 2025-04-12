@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+:root {
+    --kirby-pink: #ffb7d5;       /* Soft Kirby pink */
+    --star-yellow: #fff4a3;      /* Pastel star yellow */
+    --sky-blue: #c2e9f7;         /* Dreamland sky */
+    --cloud-white: #fdfdfd;      /* Soft cloud white */
+    --night-purple: #cbb3ff;     /* Pastel night sky */
+    --shadow-grey: #d8d8d8;      /* Soft contrast grey */
+  }
