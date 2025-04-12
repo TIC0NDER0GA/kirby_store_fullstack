@@ -1,0 +1,7 @@
+
+<form (ngSubmit)="submitQty()">
+    <select name="qty" [(ngModel)]="selectedQty">
+        <option *ngFor="let n of quantities" [value]="n">{{ n }}</option>
+      </select>
+    <input type="button" value="addToCart">
+</form>

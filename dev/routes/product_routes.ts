@@ -41,8 +41,9 @@ const create = async (req: Request, res: Response) => {
 
         const inputProduct: Product = {
             name: filters.name,
-            price: filters.price,
-            category: filters.category
+            path:'',
+            stars: filters.price,
+            description: filters.category
         }
 
 

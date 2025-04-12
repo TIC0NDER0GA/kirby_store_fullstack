@@ -1,1 +1,10 @@
-<p>product-item works!</p>
+
+
+
+<h2>{{product.name}}</h2>
+<a routerLink="/">
+<img src={{product.path}} alt={{product.name}}>
+</a>
+<img src="" alt="star">
+<h2>{{product.stars}}</h2>
+<app-order-cart [productId]="product.id"></app-order-cart>

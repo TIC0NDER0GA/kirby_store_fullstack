@@ -11,20 +11,23 @@ describe("Product Model tests", () => {
     const testProduct1 : Product = {
         id : undefined,
         name : "Orange",
-        price : 3.99,
-        category : "fruit"
+        path : '',
+        stars : 3.99,
+        description : "fruit"
     };
     const testProduct2 : Product = {
         id : undefined,
         name : "Strawberry",
-        price : 1.50,
-        category : "fruit"
+        path : '',
+        stars : 1.50,
+        description : "fruit"
     };
     const testProduct3 : Product = {
         id : undefined,
         name : "GameBoyAdvance",
-        price : 100.00,
-        category : "electronics"
+        path : '',
+        stars : 100.00,
+        description : "electronics"
     };
 
     beforeAll(async () => {
@@ -38,7 +41,7 @@ describe("Product Model tests", () => {
         const createdProduct = await table.create(testProduct1);
         expect(createdProduct).toBeDefined();
         expect(createdProduct.name).toBe(testProduct1.name);
-        expect(createdProduct.price).toBe(testProduct1.price);
+        expect(createdProduct.stars).toBe(testProduct1.stars);
         productId = createdProduct.id!;
     });
 

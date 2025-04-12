@@ -49,6 +49,18 @@ const OrderTableModel = {
         }
     },
 
+    updateOrder : async (order: Order) : Promise<Order> => {
+        try {
+             // @ts-ignore
+            const conn = await client.connect();
+            const sql = "UPDATE order_products WHERE user_id = $1 AND product_id = $2 SET quantity = $3";
+            const result = await conn.query(sql, [order.user_id, order.product_id, order.quantity]);
+            return result.rows[0];
+        } catch (err) {
+            throw new Error(`Could not add product to order ${order.order_id}: ${err}`)
+        }
+    },
+
     showProductByUser : async (userId: number) : Promise<Array<Order>> => {
         try {
             // @ts-ignore

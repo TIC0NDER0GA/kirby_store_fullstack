@@ -9,8 +9,8 @@ import client from "../backend/database";
         try {
             // @ts-ignore
 const conn = await client.connect();
-            const sql = "INSERT INTO products (name, price, category) VALUES ($1, $2, $3) RETURNING *";
-            const result = await conn.query(sql, [product.name, product.price, product.category]);
+            const sql = "INSERT INTO products (name, path, price, category) VALUES ($1, $2, $3, $4) RETURNING *";
+            const result = await conn.query(sql, [product.name, product.path, product.stars, product.description]);
             conn.release();
             return result.rows[0];
         } catch (err) {
