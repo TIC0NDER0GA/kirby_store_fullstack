@@ -1,0 +1,72 @@
+.product {
+    display: flex; /* makes this a flexbox*/
+    flex-direction: column; /* makes the orientation vertical */
+    padding-bottom: 10px; /* adds spacing to the bottom of the container(containing tag) */
+    padding-top: 10px; /* adds spacing to the top of the container(containing tag) */
+    padding: 15px;
+    align-items: center; /*centers the items horizontally */
+    background-color: var(--dream-purple); /* makes each container have a purple background */
+    border-radius: 16px; /* rounds the corners of the containers */
+    width: 270px; /* sets a set width for parent container */ 
+    box-shadow: 0 4px 8px var(--shadow-grey); /* makes it so the shadow has no horizontal offset
+    a vertical offset of 4px and a blur radius of 8px*/
+    transition: transform 0.2s ease; /* tells the browser to animate changes transform is the property being animated
+    0.2s is the time it takes and ease specifies too start fast but end slow for a smooth feel*/
+}
+
+
+.product:hover {
+    transform: translateY(-5px); /* moves the element up along the vertical axis by 5px upwards*/
+    box-shadow: 0 6px 12px var(--bubble-blue); /* changes the box shadow to be blue on hover */
+}
+
+.product-name {
+    font-size: 1.2rem;
+    color: var(--kirby-pink);
+}
+
+.product-price {
+    font-size: 1rem;
+    color: var(--kirby-pink);
+}
+
+
+
+.product-img {
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 30px;
+    transform: translateY();
+    cursor: pointer;
+}
+
+.product-img img {
+    border-radius: 20px;
+}
+
+
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-4px);}
+    100% {transform: translateY(0);}
+}
+
+.product-img:hover {
+    animation: float 1.5s ease-in-out infinite alternate;
+}
+
+.price-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+
+.currency {
+    width: 10%;
+    height: auto;
+}

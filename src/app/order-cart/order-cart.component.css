@@ -1,0 +1,31 @@
+.cart {
+    margin-left: 7px;
+}
+
+
+.quantity-selector {
+    padding: 3px 20px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--kirby-accent);
+    background-color: var(--soft-lavender);
+    color: var(--kirby-accent);
+    width: 20%;
+    margin-right: 8px;
+}
+
+.add-to-cart {
+    background-color: var(--star-yellow);
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: var(--cosmic-slate);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.add-to-cart:hover {
+    background-color: var(--sky-blue);
+}

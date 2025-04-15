@@ -5,7 +5,7 @@
     align-items: center; /* vertical children center */
     padding: 10px; /* spacing between navbar and internal children*/
     position: relative; /* makes all children move relative to navbar position instead of page */
-    box-shadow: 0 2px 5px var(--shadow-grey); /* adds a shaodw */
+    box-shadow: 0 2px 5px var(--twilight-grey); /* adds a shaodw */
     background-color: var(--sky-blue); /* Makes the background color blue */
 }
 

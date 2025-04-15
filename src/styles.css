@@ -1,10 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
 :root {
-    --kirby-pink: #ffb7d5;       /* Soft Kirby pink */
-    --star-yellow: #fff4a3;      /* Pastel star yellow */
+    --kirby-pink: #ff80aa;       /* Soft Kirby pink */
+    --star-yellow: #fff4a3;
+    --kirby-accent: #8b3a62;      /* Pastel star yellow */
     --sky-blue: #c2e9f7;         /* Dreamland sky */
     --cloud-white: #fdfdfd;      /* Soft cloud white */
     --night-purple: #cbb3ff;     /* Pastel night sky */
     --shadow-grey: #d8d8d8;      /* Soft contrast grey */
+    --dream-purple: #e5d0ff;     /* for card background */
+    --bubble-blue: #aee2f9;      /* for hover effects or borders */
+    --soft-lavender: #f3e6ff;    /* optional secondary background */
+    --twilight-grey: #d1cfe2;    /* calm neutral for text/buttons */
+    --cosmic-slate: #5f5d6b;
+    --galaxy-charcoal: #3d3c4d;
+    --cotton-candy: #ffd6e8;
+    --blush-pink: #ffc2d6;
   }

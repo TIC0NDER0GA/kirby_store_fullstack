@@ -1,0 +1,11 @@
+.product-list {
+    display: grid; /* Makes the display in grid format */
+    grid-template-columns: repeat(3,300px); /* Makes the pattern repeat as 3 per row with equal spacing(for fr) 
+    you can also use any form of mesurement you want*/
+    grid-template-rows: auto auto; /* optional row spacing */
+    gap: 0px; /* Adds space between rows and columns so they arent bunched together */
+    justify-content: center; /* centers the product list horizantally in he webpage */
+    align-items: center; /* centers the products themselves vertically withone another */
+    row-gap: 20px; /* Adds spacing between rows */
+    margin-top: 20px;
+}

@@ -6,7 +6,7 @@ import productRoutes from '../routes/product_routes';
 import orderRoutes from '../routes/order_routes';
 
 const  corsOprtions = {
-    origin:"",
+    origin:"http://localhost:4200",
     optionsSuccessStatus: 200
 };
 

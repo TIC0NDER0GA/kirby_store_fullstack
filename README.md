@@ -60,4 +60,4 @@ These assets are used under the belief of **fair use**, for non-commercial, educ
 
 If you are a copyright holder and have any concerns, please contact me and I will address them promptly.
 
-
+<a href="https://www.vecteezy.com/free-vector/star">Star Vectors by Vecteezy</a>
