@@ -14,5 +14,29 @@ type OrderQueryRequest = {
     };
 }
 
+type ProductQueryRequest = {
+    query : string,
+    token : string,
+    filters  : {
+        id: number,
+        name: string,
+        price: number,
+        category: string,
+    };
+}
 
-export type {OrderQueryRequest}
+
+
+type OrderDetails = {
+    user_id:number,
+    order_id:number,
+    product_id: number,
+    name: string,
+    stars: number,
+    path: string,
+    quantity: number,
+    total_price: number
+}
+
+
+export type {OrderQueryRequest, ProductQueryRequest, OrderDetails}

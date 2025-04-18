@@ -4,14 +4,14 @@
 
 <h2 class="product-name">{{product.name}}</h2>
 
-<a routerLink="/" class="product-img">
+<a [routerLink]="['/product', product.id]" class="product-img">
 <img [src]="product.path" alt={{product.name}}>
 </a>
 
 <div class="price-actions">
 <img  class="currency" src="assets/images/star_currency.png" alt="">
 <h2 class="product-price">{{product.stars}}</h2>
-<app-order-cart [productId]="product.id"></app-order-cart>
+<app-order-cart [product]="product"></app-order-cart>
 </div>
 
 

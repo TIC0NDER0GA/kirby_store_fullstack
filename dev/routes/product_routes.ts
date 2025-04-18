@@ -3,6 +3,7 @@ import ProductTableModel from '../models/product_model';
 import { Product } from '../models/store_types';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { ProductQueryRequest } from '../backend/query_types';
 
 const productsTable = ProductTableModel;
 dotenv.config();
@@ -10,16 +11,7 @@ const {
     TOKEN_SECRET
 } = process.env;
 
-type ProductQueryRequest = {
-    query : string,
-    token : string,
-    filters  : {
-        id: number,
-        name: string,
-        price: number,
-        category: string,
-    };
-}
+
 
 
 
@@ -61,11 +53,10 @@ const create = async (req: Request, res: Response) => {
 
 
 const show = async (req: Request, res : Response) => {
-    const {query, filters} : ProductQueryRequest = req.body;
     
     try {
-        const productId : number = filters.id;
-        const product : Product = await productsTable.show(productId);
+        const product_id : number = (req.params['id'] as unknown) as number;
+        const product : Product = await productsTable.show(product_id);
         res.json(product);
     } catch (err) {
         res.status(400);
@@ -76,7 +67,6 @@ const show = async (req: Request, res : Response) => {
 
 
 const index = async (req: Request, res : Response) => {
-    const {query, filters} : ProductQueryRequest = req.body;
     try {
         const products : Array<Product> = await productsTable.index();
         res.json(products);

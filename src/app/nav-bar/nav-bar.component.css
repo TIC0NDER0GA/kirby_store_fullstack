@@ -25,6 +25,7 @@
     margin: 0 10px; /* adds spacing between links */
     text-decoration: none; /* removes the underline from hyperlink text */
     color: var(--night-purple); /* Makes the link text purple */
+    
 }
 
 .links a:hover {

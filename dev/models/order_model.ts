@@ -127,5 +127,4 @@ const OrderTableModel = {
 };
 
 
-
 export default OrderTableModel;

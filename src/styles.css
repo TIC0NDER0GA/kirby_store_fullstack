@@ -18,3 +18,7 @@
     --cotton-candy: #ffd6e8;
     --blush-pink: #ffc2d6;
   }
+
+  body {
+    background-color: var(--blush-pink);
+  }

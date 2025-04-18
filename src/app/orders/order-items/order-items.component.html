@@ -1,0 +1,14 @@
+<section>
+<img src="{{order.path}}" alt="">
+
+<div>
+    <h2>{{order.name}}</h2>
+<div>
+    <img src="src\assets\images\star_currency.png" alt="">
+    <p>{{order.stars}}</p>
+</div>
+    <p>Amount: </p>
+    <input type="number" [(ngModel)]="order.quantity" min="1" max="100" (change)="updateQty(order)">
+</div>
+
+</section>

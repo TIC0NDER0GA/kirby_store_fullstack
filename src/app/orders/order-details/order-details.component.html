@@ -1,0 +1,40 @@
+<section>
+<app-order-items *ngFor="let od of orders$ | async" [order]="od"></app-order-items>
+<h1>Total: {{total}}</h1>
+</section>
+
+<section>
+    <form #orderForm="ngForm" >
+    <h2>Full Name</h2>
+    <input type="text" name="full_name" id=""
+    ngModel
+    required
+    minlength="8"
+    placeholder="Enter your Name"
+    [(ngModel)]="full_name"
+    >
+    <h2>Address</h2>
+    <input type="text" name="address" id=""
+    ngModel
+    required
+    minlength="9"
+    placeholder="Enter your Address"
+    >
+    <h2>Credit Card Number</h2>
+    <input type="text" name="credit_card" id=""
+    ngModel
+    required
+    minlength="16"
+    pattern="[0-9]*"
+    placeholder="card number"
+    >
+    <p>We'll never share your payment details with anyone else</p>
+    <button 
+  class="add-to-cart"
+  (click)="confirmOrder()"
+  [disabled]="orderForm.invalid || total === 0"
+  >
+  Submit
+</button>
+</form>
+</section>

@@ -15,14 +15,12 @@ export class ProductListComponent implements OnInit {
   
   getProductsObserver : Observer<Product[]> = {
     next: (products : Product[]) => {
-      console.log(products);
       this.products = products;
     },
     error: (err) => {
       console.error('Error loading products:', err);
     },
     complete: () => {
-      console.log('Product loading completed');
     }
   } 
   
@@ -35,6 +33,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit() : void  {
     this.productService.getProducts().subscribe(this.getProductsObserver);
   }
+
 
 
 
