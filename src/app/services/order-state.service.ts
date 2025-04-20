@@ -36,8 +36,8 @@ export class OrderStateService {
       orders.unshift(newOrder);
     }
   
-    // Filter out any with 0 qty (just in case)
-    this.orderDetails.next(orders.filter(item => item.quantity > 0));
+    
+    this.orderDetails.next(orders);
   }
 
   updateQty = (order: OrderDetails, qty: number) : void => {
@@ -54,7 +54,7 @@ export class OrderStateService {
       });
 
       orders[id].total_price = num;
-      this.orderDetails.next(orders.filter(o => o.quantity > 0));
+      this.orderDetails.next(orders);
   }
 
   completeOrder = () : void => {

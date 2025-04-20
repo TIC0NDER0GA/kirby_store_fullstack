@@ -11,7 +11,7 @@
 </div>
 
     <p>Amount: </p>
-    <input class="kirby-entry" type="number" [(ngModel)]="order.quantity" min="1" max="100" (change)="updateQty(order)">
+    <input class="kirby-entry" type="number" [(ngModel)]="order.quantity" min="1" max="100" (ngModelChange)="updateQty(order)">
 </div>
 
 </section>

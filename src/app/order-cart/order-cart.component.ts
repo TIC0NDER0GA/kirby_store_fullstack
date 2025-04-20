@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AddcartService } from '../services/addcart.service';
 import { Observer } from 'rxjs';
 import { Order, Product } from '../../../dev/models/store_types';
@@ -15,6 +15,7 @@ import { OrderDetails } from '../../../dev/backend/query_types';
 export class OrderCartComponent implements OnInit {
   @Input() product : Product;
 selectedQty : number = 0;
+@Output() itemAdded = new EventEmitter<string>();
 quantities : number[] = []; 
 order : OrderDetails = {
   order_id: 0,
@@ -87,6 +88,7 @@ submitQty = () : void => {
     this.order.name = this.product.name;
     this.order.path = this.product.path;
     this.order.stars = this.product.stars;
+    this.itemAdded.emit(`${this.product.name} added to cart!`);
     this.orderState.addToOrder(this.order);
 
     /*
@@ -103,6 +105,5 @@ submitQty = () : void => {
     console.error('Error: ', err);
   }
 }
-
-
 }
+

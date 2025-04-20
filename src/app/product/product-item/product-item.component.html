@@ -11,7 +11,7 @@
 <div class="price-actions">
 <img  class="currency" src="assets/images/star_currency.png" alt="">
 <h2 class="product-price">{{product.stars}}</h2>
-<app-order-cart [product]="product"></app-order-cart>
+<app-order-cart [product]="product" (itemAdded)="showNotification($event)"></app-order-cart>
 </div>
 
 

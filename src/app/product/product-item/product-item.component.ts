@@ -19,4 +19,9 @@ export class ProductItemComponent {
     }
   }
 
+  showNotification = (message: string) => {
+    alert(message);
+  }
 }
+
+
