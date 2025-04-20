@@ -7,7 +7,7 @@
     padding: 3px 36px;
     border: none;
     border-radius: 8px;
-    text-align: center;
+    text-align: left;
     border: 1px solid var(--kirby-accent);
     background-color: var(--soft-lavender);
     color: var(--kirby-accent);
@@ -15,17 +15,5 @@
     margin-right: 8px;
 }
 
-.add-to-cart {
-    background-color: var(--star-yellow);
-    padding: 6px 8px;
-    border-radius: 8px;
-    font-weight: bold;
-    color: var(--cosmic-slate);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 
-}
 
-.add-to-cart:hover {
-    background-color: var(--sky-blue);
-}

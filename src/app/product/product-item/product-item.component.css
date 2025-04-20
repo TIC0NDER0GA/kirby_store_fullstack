@@ -14,7 +14,6 @@
     0.2s is the time it takes and ease specifies too start fast but end slow for a smooth feel*/
 }
 
-
 .product:hover {
     transform: translateY(-5px); /* moves the element up along the vertical axis by 5px upwards*/
     box-shadow: 0 6px 12px var(--bubble-blue); /* changes the box shadow to be blue on hover */
@@ -30,8 +29,6 @@
     color: var(--kirby-pink);
 }
 
-
-
 .product-img {
     padding: 15px;
     margin-bottom: 5px;
@@ -45,16 +42,17 @@
 }
 
 
-
 @keyframes float {
     0% {transform: translateY(0);}
     50% {transform: translateY(-4px);}
     100% {transform: translateY(0);}
 }
 
+
 .product-img:hover {
     animation: float 1.5s ease-in-out infinite alternate;
 }
+
 
 .price-actions {
     display: flex;
@@ -65,8 +63,3 @@
 
 
 
-
-.currency {
-    width: 10%;
-    height: auto;
-}

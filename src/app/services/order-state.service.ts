@@ -18,34 +18,30 @@ export class OrderStateService {
 
   constructor() { }
 
-  addToOrder = (o: OrderDetails) : void => {
-    const orders : OrderDetails[] = this.orderDetails.getValue();
-    const order : OrderDetails = {
-      user_id: o.user_id,
-      order_id:o.order_id,
-      product_id: o.product_id,
-      name: o.name,
-      stars: o.stars,
-      path: o.path,
-      quantity: o.quantity,
-      total_price: o.stars * o.quantity
-    }
-
-    if (orders.find( o => o.product_id === order.product_id) !== undefined) {
-      orders.forEach((o: OrderDetails)  => {
-        if (o.product_id == order.product_id) {
-          o.quantity += Number(order.quantity);
-          console.log(typeof o.quantity, typeof order.quantity, o.quantity, order.quantity);
-        }
-      });
+  addToOrder = (o: OrderDetails): void => {
+    const orders: OrderDetails[] = this.orderDetails.getValue();
+  
+    const incomingQty = Number(o.quantity); // coerce to number
+    const existingOrder = orders.find(item => item.product_id === o.product_id);
+  
+    if (existingOrder) {
+      existingOrder.quantity += incomingQty;
+      existingOrder.total_price = existingOrder.stars * existingOrder.quantity;
     } else {
-      orders.unshift(order);
+      const newOrder: OrderDetails = {
+        ...o,
+        quantity: incomingQty,
+        total_price: incomingQty * o.stars
+      };
+      orders.unshift(newOrder);
     }
-    this.orderDetails.next(orders.filter(o => o.quantity > 0));
-    
+  
+    // Filter out any with 0 qty (just in case)
+    this.orderDetails.next(orders.filter(item => item.quantity > 0));
   }
 
   updateQty = (order: OrderDetails, qty: number) : void => {
+    order.quantity = Number(order.quantity);
     const orders : OrderDetails[] = this.orderDetails.getValue();
     let num: number = 0;
     let id: number = 0;

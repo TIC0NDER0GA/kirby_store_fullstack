@@ -9,11 +9,14 @@
     background-color: var(--sky-blue); /* Makes the background color blue */
 }
 
+
 .logo {
     justify-content: center;
     font-weight: bold; /* makes the logo bold */
     color: var(--kirby-pink); /* Makes the logo text pink */
+    font-size: 2.5rem;
 }
+
 
 .links {
     display: flex; /* sets flexbox property */
@@ -21,12 +24,14 @@
     align-items: center; /* centers children vertically */
 }
 
+
 .links a {
     margin: 0 10px; /* adds spacing between links */
     text-decoration: none; /* removes the underline from hyperlink text */
     color: var(--night-purple); /* Makes the link text purple */
     
 }
+
 
 .links a:hover {
     color: var(--star-yellow); /* Makes the link text yellow on hover */

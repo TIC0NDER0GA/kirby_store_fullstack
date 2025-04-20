@@ -17,8 +17,59 @@
     --galaxy-charcoal: #3d3c4d;
     --cotton-candy: #ffd6e8;
     --blush-pink: #ffc2d6;
+    --dream-teal: #4fb6a3;  /* Vibrant teal */
   }
+
 
   body {
     background-color: var(--blush-pink);
   }
+
+
+  .kirby-button {
+    background-color: var(--star-yellow);
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: var(--cosmic-slate);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+
+  .kirby-button:hover {
+    background-color: var(--sky-blue);
+}
+
+
+  .kirby-entry {
+    border: 1px solid var(--kirby-accent);
+    background-color: var(--soft-lavender);
+    border-radius: 6px;
+    color: var(--kirby-accent)
+  }
+
+
+  .currency {
+    width: 25px;
+    height: auto;
+}
+
+
+.img-border {
+  background-color: var(--dream-purple);
+  padding: 15px;
+  border-radius: 16px;
+}
+
+
+.img {
+    border-radius: 30px;
+}
+
+
+.price {
+  display: flex;
+}
+
+

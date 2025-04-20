@@ -1,11 +1,23 @@
-<body>
-    <img src="{{product.path}}" alt="">
-
-    <div>
-        <h1>{{product.name}}</h1>
-        <p>{{product.stars}}</p>
-        <p>{{product.description}}</p>
-        <app-order-cart [product]="product"></app-order-cart>
-        <a routerLink="/">Product List</a>
+<section class="layout">
+    <div class="img-border img-spacing">
+    <img 
+    class="img"
+    src="{{product.path}}" alt="">
     </div>
-</body>
+
+    <div class="detail-spacing">
+        <h1 class="product-title">{{product.name}}</h1>
+
+        <div class="price">
+        <img  class="currency" src="assets/images/star_currency.png" alt="">
+        <p>{{product.stars}}</p>
+        </div>
+
+        <p class="text-color">{{product.description}}</p>
+        <app-order-cart [product]="product"></app-order-cart>
+        <a routerLink="/"
+        class="product-list-link"
+        > <- Product List</a>
+    </div>
+</section>
+

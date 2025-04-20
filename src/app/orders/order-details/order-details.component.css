@@ -1,0 +1,22 @@
+.layout{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 90vh;
+    gap: 50px;
+
+}
+
+
+.layout-total {
+    display: flex;
+    align-content: center;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+
+.text-color {
+    color: var(--dream-teal);
+}

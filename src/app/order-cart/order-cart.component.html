@@ -1,9 +1,9 @@
 
 <form>
-  <select class="quantity-selector" [(ngModel)]="selectedQty" name="selectedQty">
+  <select class="kirby-entry quantity-selector" [(ngModel)]="selectedQty" name="selectedQty">
     <option *ngFor="let n of quantities" [value]="n">{{ n }}</option>
   </select>
 
   <!-- Add to Cart Button -->
-  <button class="add-to-cart" (click)="submitQty()" type="button">Add to Cart</button>
+  <button class="kirby-button" (click)="submitQty()" type="button">Add to Cart</button>
 </form>
