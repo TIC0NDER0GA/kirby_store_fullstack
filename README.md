@@ -3,14 +3,6 @@
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
 
 ## Running My code steps
-0. set .env config
-    POST_DATABASE= kirby_store
-    POST_HOST=127.0.0.1
-    POST_USER=postgres
-    POST_PASSWORD=postgres
-    ENV=build
-    POST_DATABASE_TEST=kirby_store_test
-
 1. Install dependencies
 npm i
   - Installs all necessary project dependencies
