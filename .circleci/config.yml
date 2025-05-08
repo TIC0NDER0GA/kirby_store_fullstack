@@ -1,0 +1,44 @@
+version: 2.1
+
+jobs:
+  build-and-deploy:
+    docker:
+      - image: cimg/node:20.2
+    steps:
+      - checkout
+
+      # Install dependencies
+      - run: npm ci
+
+      # Build frontend Angular app
+      - run: npm run build
+
+      # Compile backend TypeScript
+      - run: npm run tsc
+
+      # Deploy frontend to S3
+      - run: aws s3 sync ./dist/kirby-online-store/ s3://udacity-bucket-doy
+
+      # Deploy backend to EC2 and run migrations
+      - run:
+          name: Deploy Backend & Migrate DB on EC2
+          command: |
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+              mkdir -p ~/app
+              exit
+            EOF
+
+            scp -r ./build/backend/* ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
+
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+              cd ~/app
+              npm install
+              npm run migrate-up
+              npm run start_api &
+              exit
+            EOF
+
+workflows:
+  build-deploy:
+    jobs:
+      - build-and-deploy
