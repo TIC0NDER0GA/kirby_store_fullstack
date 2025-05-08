@@ -3,7 +3,7 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 export const serverRoutes: ServerRoute[] = [
   {
     path: '', 
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path: 'product',
@@ -11,7 +11,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'orders',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path: 'product/:id',
@@ -19,11 +19,15 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'orders/cart',
-    renderMode: RenderMode.Prerender  // Or RenderMode.Hybrid if you need SSR
+    renderMode: RenderMode.Server  // Or RenderMode.Hybrid if you need SSR
   },
   {
     path: 'orders/confirmation',
-    renderMode: RenderMode.Prerender  // Or RenderMode.Hybrid if you need SSR
+    renderMode: RenderMode.Server  // Or RenderMode.Hybrid if you need SSR
+  },
+  {
+    path: ':id',
+    renderMode: RenderMode.Server
   },
   {
     path: '**',
