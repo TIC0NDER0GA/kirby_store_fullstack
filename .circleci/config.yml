@@ -20,6 +20,11 @@ jobs:
       # Compile backend TypeScript
       - run: npm run tsc
 
+      - run:
+          name: Add EC2 Host to known_hosts
+          command: |
+            ssh-keyscan ec2-3-149-229-145.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
+
       # Deploy frontend to S3
       - run: aws s3 sync ./dist/kirby-online-store/ s3://udacity-bucket-doy
 
