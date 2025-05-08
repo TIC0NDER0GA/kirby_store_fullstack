@@ -64,7 +64,7 @@ jobs:
               # Set environment variables
               export POST_DATABASE=kirby_store
               export POST_DATABASE_TEST=kirby_store_test
-              export POST_HOST=127.0.0.1
+              export POST_HOST=kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com
               export POST_USER=postgres
               export POST_PASSWORD=postgres
               export ENV=build
@@ -75,7 +75,7 @@ jobs:
               # Install and run
               npm install
               npm run migrate-up
-              nohup npm run start_api &
+              nohup npm run start_api > app.log 2>&1 &
             EOF
 
 workflows:
