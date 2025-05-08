@@ -41,7 +41,7 @@ jobs:
               exit 1
             fi
 
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
               # Install dependencies
               sudo yum install -y curl postgresql
               curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
@@ -58,7 +58,7 @@ jobs:
             scp ./package.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
 
             # Run migrations and start backend with env vars
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
               cd ~/app
 
               # Set environment variables
