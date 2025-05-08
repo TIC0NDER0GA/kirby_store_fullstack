@@ -12,6 +12,7 @@
     "migrate-up": "db-migrate up",
     "migrate-down": "db-migrate down",
     "start_api": "npx tsc -p tsconfig.commonjs.json && node ./build/backend/server.js",
+    "build_api": "npx tsc -p tsconfig.commonjs.json",
     "watch_ts": "tsc-watch --esModuleInterop dev/server.ts --outDir ./build --onSuccess \"node ./dist/server.js\"",
     "tsc": "tsc",
     "dockerup": "docker-compose up ",

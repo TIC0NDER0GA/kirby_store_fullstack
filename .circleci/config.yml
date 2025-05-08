@@ -19,7 +19,7 @@ jobs:
       - run: npm run build
 
       # Compile backend TypeScript
-      - run: npm run tsc
+      - run: npm run build_api
 
       - run:
           name: Set up SSH key
