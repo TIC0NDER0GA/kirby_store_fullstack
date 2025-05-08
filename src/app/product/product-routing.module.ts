@@ -4,8 +4,13 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductListComponent } from './product-list/product-list.component';
 
 
-const routes: Routes = [
-    { path: ':id', component: ProductDetailsComponent},
+
+export const routes: Routes = [
+    { path: ':id', component: ProductDetailsComponent,
+      data: {
+        renderMode: 'no-prerender'
+      },
+    },
     { path: '', component: ProductListComponent}
 
 ];
