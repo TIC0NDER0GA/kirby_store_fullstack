@@ -1,12 +1,11 @@
 import express, { Request, Response } from 'express';
 import OrderTableModel from '../models/order_model';
 import { Order, OrderDetails } from '../models/store_types';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import { OrderQueryRequest } from '../backend/query_types';
 
 const ordersTable = OrderTableModel;
-dotenv.config();
+
+
 const {
     TOKEN_SECRET
 } = process.env;

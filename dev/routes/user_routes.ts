@@ -2,10 +2,9 @@ import express, { Request, Response } from 'express';
 import UserTableModel from '../models/user_model';
 import { User } from '../models/store_types';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+
 
 const usersTable = UserTableModel;
-dotenv.config();
 const {
     TOKEN_SECRET
 } = process.env;

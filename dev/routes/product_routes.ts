@@ -2,11 +2,9 @@ import express, { Request, Response } from 'express';
 import ProductTableModel from '../models/product_model';
 import { Product } from '../models/store_types';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import { ProductQueryRequest } from '../backend/query_types';
 
 const productsTable = ProductTableModel;
-dotenv.config();
 const {
     TOKEN_SECRET
 } = process.env;
