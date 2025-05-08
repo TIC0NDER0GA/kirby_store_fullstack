@@ -8,7 +8,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 export const routes: Routes = [
     { path: ':id', component: ProductDetailsComponent,
       data: {
-        renderMode: 'no-prerender'
+        renderMode: 'server'
       },
     },
     { path: '', component: ProductListComponent}
