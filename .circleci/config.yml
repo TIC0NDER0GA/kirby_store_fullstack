@@ -41,19 +41,18 @@ jobs:
               exit 1
             fi
 
-            # SSH into EC2 and install PostgreSQL client, create app directory, and deploy the app
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
-              sudo yum install -y postgresql
-              curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
-              sudo yum install -y nodejs
+            # Install PostgreSQL client before SSH (fix for 'psql: command not found')
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "sudo dnf install -y postgresql postgresql-server"
 
-              # Create the dev and test databases
-              PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c "CREATE DATABASE kirby_store;"
-              PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c "CREATE DATABASE kirby_store_test;"
+            # SSH into EC2 and install Node.js 20.x
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "curl -sL https://rpm.nodesource.com/setup_20.x | sudo -E bash - && sudo dnf install -y nodejs"
 
-              # Verify the databases were created
-              PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c "\l"
-            EOF
+            # Create the dev and test databases
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c 'CREATE DATABASE kirby_store;'"
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c 'CREATE DATABASE kirby_store_test;'"
+
+            # Verify the databases were created
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c '\l'"
 
             # Copy the backend files to EC2 instance
             scp -r ./build/* ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
@@ -62,12 +61,7 @@ jobs:
             scp ./package.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
 
             # SSH into EC2 again, install dependencies, run migrations, and start the API
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
-              cd ~/app
-              npm install
-              npm run migrate-up
-              nohup npm run start_api &
-            EOF
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "cd ~/app && npm install && npm run migrate-up && nohup npm run start_api &"
 
 workflows:
   build-deploy:
