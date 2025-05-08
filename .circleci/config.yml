@@ -21,8 +21,10 @@ jobs:
       - run: npm run tsc
 
       - run:
-          name: Add EC2 Host to known_hosts
+          name: Set up SSH key
           command: |
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+            chmod 400 ~/.ssh/id_rsa
             ssh-keyscan ec2-3-149-229-145.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
 
       # Deploy frontend to S3
