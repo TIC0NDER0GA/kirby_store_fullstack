@@ -32,7 +32,7 @@ jobs:
       # Deploy frontend to S3
       - run: aws s3 sync ./dist/kirby-online-store/browser/ s3://udacity-bucket-doy
 
-      # Deploy the entire build folder, database.json, migrations, and other files to EC2 and run migrations
+      # Deploy backend and run migrations on EC2
       - run:
           name: Deploy Backend & Migrate DB on EC2
           command: |
@@ -42,19 +42,26 @@ jobs:
             fi
 
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+              # Install dependencies
               sudo yum install -y curl postgresql
               curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
               sudo yum install -y nodejs
+
+              # Create app directory
               mkdir -p ~/app
             EOF
 
+            # Copy all necessary files
             scp -r ./build/* ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
             scp ./database.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
             scp -r ./migrations/ ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
             scp ./package.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
-            scp ./package-lock.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
 
+            # Run migrations and start backend with env vars
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+              cd ~/app
+
+              # Set environment variables
               export POST_DATABASE=kirby_store
               export POST_DATABASE_TEST=kirby_store_test
               export POST_HOST=127.0.0.1
@@ -65,7 +72,7 @@ jobs:
               export SALT_RROUNDS=19
               export TOKEN_SECRET=poyo
 
-              cd ~/app
+              # Install and run
               npm install
               npm run migrate-up
               nohup npm run start_api &
