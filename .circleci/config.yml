@@ -13,21 +13,14 @@ jobs:
       - aws-cli/setup
 
       # Install dependencies
-      - run:
-          name: Install dependencies
-          command: npm ci
+      - run: npm ci
 
       # Build frontend Angular app
-      - run:
-          name: Build Angular frontend
-          command: npm run build
+      - run: npm run build
 
       # Compile backend TypeScript
-      - run:
-          name: Compile backend
-          command: npm run tsc
+      - run: npm run tsc
 
-      # Set up SSH key for EC2 access
       - run:
           name: Set up SSH key
           command: |
@@ -37,11 +30,9 @@ jobs:
             ssh-keyscan ec2-3-149-229-145.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
 
       # Deploy frontend to S3
-      - run:
-          name: Sync frontend to S3
-          command: aws s3 sync ./dist/kirby-online-store/ s3://udacity-bucket-doy
+      - run: aws s3 sync ./dist/kirby-online-store/ s3://udacity-bucket-doy
 
-      # Deploy backend and run migrations on EC2
+      # Deploy backend to EC2 and run migrations
       - run:
           name: Deploy Backend & Migrate DB on EC2
           command: |
