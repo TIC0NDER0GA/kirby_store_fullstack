@@ -12,6 +12,13 @@ jobs:
       - checkout
       - aws-cli/setup
 
+            # Install PostgreSQL client (psql)
+      - run:
+          name: Install PostgreSQL Client
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y postgresql-client
+
       # Install dependencies
       - run: npm ci
 

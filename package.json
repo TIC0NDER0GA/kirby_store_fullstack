@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:Kirby_Online_Store": "node build/kirby-online-store/server/server.mjs",
-    "migrate-up": "db-migrate up",
+    "migrate-up": "db-migrate up --verbose",
     "migrate-down": "db-migrate down",
     "start_api": "npx tsc -p tsconfig.commonjs.json && node ./build/backend/server.js",
     "build_api": "npx tsc -p tsconfig.commonjs.json",
