@@ -36,31 +36,35 @@ jobs:
       - run:
           name: Deploy Backend & Migrate DB on EC2
           command: |
-            
             if [ ! -d ./build ]; then
               echo "Error: ./build directory does not exist. Check your build process."
               exit 1
             fi
 
-            
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
-              
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
               sudo yum install -y curl postgresql
               curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
               sudo yum install -y nodejs
-
-             
               mkdir -p ~/app
             EOF
 
-           
             scp -r ./build/* ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
             scp ./database.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
             scp -r ./migrations/ ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
             scp ./package.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
+            scp ./package-lock.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
 
-            
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+              export POST_DATABASE=kirby_store
+              export POST_DATABASE_TEST=kirby_store_test
+              export POST_HOST=127.0.0.1
+              export POST_USER=postgres
+              export POST_PASSWORD=postgres
+              export ENV=build
+              export BCRPYT=Kirbys-Dream-Land
+              export SALT_RROUNDS=19
+              export TOKEN_SECRET=poyo
+
               cd ~/app
               npm install
               npm run migrate-up
