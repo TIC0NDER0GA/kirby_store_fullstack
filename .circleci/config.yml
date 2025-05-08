@@ -42,14 +42,27 @@ jobs:
               exit 1
             fi
 
-            # SSH into EC2 and install PostgreSQL client, create app directory, and deploy the app
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "sudo yum install postgresql -y; mkdir -p ~/app"
+            # SSH into EC2 and install Node.js, npm, and PostgreSQL client
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+              # Install Node.js and PostgreSQL client on EC2
+              sudo yum install -y curl postgresql
+              curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
+              sudo yum install -y nodejs
+
+              # Ensure the app directory exists
+              mkdir -p ~/app
+            EOF
 
             # Copy the backend files to EC2 instance
             scp -r ./build/backend/* ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
 
             # SSH into EC2 again, install dependencies, run migrations, and start the API
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "cd ~/app && npm install && npm run migrate-up && nohup npm run start_api &"
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com << 'EOF'
+              cd ~/app
+              npm install
+              npm run migrate-up
+              nohup npm run start_api &
+            EOF
 
 workflows:
   build-deploy:
