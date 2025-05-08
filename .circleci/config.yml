@@ -30,7 +30,7 @@ jobs:
             ssh-keyscan ec2-3-149-229-145.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
 
       # Deploy frontend to S3
-      - run: aws s3 sync ./dist/kirbyonlinestore/browser/ s3://your-bucket-name
+      - run: aws s3 sync ./dist/kirby-online-store/browser/ s3://your-bucket-name
 
       # Deploy backend to EC2 and run migrations
       - run:
