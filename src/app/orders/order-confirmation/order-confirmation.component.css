@@ -1,0 +1,32 @@
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 90vh;
+}
+
+
+.success {
+    font-size: 1.75rem;
+}
+
+
+.cost {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+
+.text {
+    color: var(--dream-teal); 
+}
+
+
+.bold {
+    font-weight: bold;
+}
+
+

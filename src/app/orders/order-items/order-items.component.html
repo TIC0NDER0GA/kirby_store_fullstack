@@ -1,14 +1,17 @@
-<section>
-<img src="{{order.path}}" alt="">
+<section class="layout">
+<div class="img-spacing img-border">
+<img class="img" src="{{order.path}}" alt="">
+</div>
+<div>
+    <h2 class="text">{{order.name}}</h2>
 
-<div>
-    <h2>{{order.name}}</h2>
-<div>
-    <img src="src\assets\images\star_currency.png" alt="">
+<div class="cost">
+    <img  class="currency" src="assets/images/star_currency.png" alt="">
     <p>{{order.stars}}</p>
 </div>
+
     <p>Amount: </p>
-    <input type="number" [(ngModel)]="order.quantity" min="1" max="100" (change)="updateQty(order)">
+    <input class="kirby-entry" type="number" [(ngModel)]="order.quantity" min="1" max="100" (ngModelChange)="updateQty(order)">
 </div>
 
 </section>

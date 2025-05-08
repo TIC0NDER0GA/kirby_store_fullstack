@@ -2,59 +2,40 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
 
-## Development server
+## Running My code steps
+1. Install dependencies
+npm i
+  - Installs all necessary project dependencies
 
-To start a local development server, run:
+2. Start Docker containers
+npm run dockerup
+  - Docker Desktop must be running in the background
+  - The PostgreSQL database runs on localhost:5432
 
-```bash
+3. Run database migrations
+npm run migrate-up
+  - Seeds the database with provided test data
+
+4. Start the Express server
+npm run start_api
+  - Starts the backend server
+  - API endpoints will be available at localhost:3000
+
+5. Run the Angular frontend
 ng serve
-```
+  - Compiles and runs the Angular app
+  - The frontend is available at localhost:4200
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+6. Shut down Docker containers
+npm run dockerdown
+  - Stops Docker containers
+    - Clears the PostgreSQL databaase
+  - Don’t forget to stop the Express server with Ctrl + C
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
 
 ## Copyright Disclaimer
 
-This project includes visual assets from Kirby and the Amazing Mirror by [Original Creator/Company], which are copyrighted by their respective owners.
+This project includes visual assets from Kirby and the Amazing Mirror by Nintendo, which are copyrighted by their respective owners.
 
 These assets are used under the belief of **fair use**, for non-commercial, educational, and fan-based purposes only. No copyright infringement is intended. 
 

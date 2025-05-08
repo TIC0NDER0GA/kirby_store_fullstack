@@ -1,12 +1,19 @@
+
+<main class="layout text-color" >
+
 <section>
 <app-order-items *ngFor="let od of orders$ | async" [order]="od"></app-order-items>
-<h1>Total: {{total}}</h1>
+<div class="layout-total">
+<h1>Total: </h1> 
+<img  class="currency" src="assets/images/star_currency.png" alt="">
+<h1> {{total}}</h1>
+</div>
 </section>
 
 <section>
     <form #orderForm="ngForm" >
     <h2>Full Name</h2>
-    <input type="text" name="full_name" id=""
+    <input class="kirby-entry" type="text" name="full_name" id=""
     ngModel
     required
     minlength="8"
@@ -14,14 +21,14 @@
     [(ngModel)]="full_name"
     >
     <h2>Address</h2>
-    <input type="text" name="address" id=""
+    <input  class="kirby-entry" type="text" name="address" id=""
     ngModel
     required
     minlength="9"
     placeholder="Enter your Address"
     >
     <h2>Credit Card Number</h2>
-    <input type="text" name="credit_card" id=""
+    <input class="kirby-entry" type="text" name="credit_card" id=""
     ngModel
     required
     minlength="16"
@@ -30,7 +37,7 @@
     >
     <p>We'll never share your payment details with anyone else</p>
     <button 
-  class="add-to-cart"
+  class="kirby-button"
   (click)="confirmOrder()"
   [disabled]="orderForm.invalid || total === 0"
   >
@@ -38,3 +45,4 @@
 </button>
 </form>
 </section>
+</main>

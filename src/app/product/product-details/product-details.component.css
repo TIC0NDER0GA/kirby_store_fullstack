@@ -1,0 +1,36 @@
+.layout {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+
+.img-spacing {
+    margin-right: 6%;
+}
+
+
+.product-list-link {
+    color: var(--kirby-accent);
+}
+
+
+.product-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dream-teal);
+}
+
+
+.text-color {
+    color: var(--dream-teal);
+}
+
+
+.detail-spacing {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

@@ -1,0 +1,22 @@
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.img-spacing {
+    margin: 10px;
+}
+
+
+.text {
+    font-weight: bold;
+}
+
+
+.cost {
+    display: flex;
+    align-items: center;
+}
