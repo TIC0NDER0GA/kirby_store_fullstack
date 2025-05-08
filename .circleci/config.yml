@@ -9,6 +9,7 @@ jobs:
       - image: cimg/node:20.9
     steps:
       - checkout
+      - aws-cli/setup
 
       # Install dependencies
       - run: npm ci
