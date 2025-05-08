@@ -1,11 +1,15 @@
 version: 2.1
+orbs:
+  node: circleci/node@5.0.2
+  aws-cli: circleci/aws-cli@3.1.1
 
 jobs:
   build-and-deploy:
     docker:
-      - image: cimg/node:20.2
+      - image: cimg/node:20.9
     steps:
       - checkout
+      - aws-cli/setup
 
       # Install dependencies
       - run: npm ci
@@ -15,6 +19,14 @@ jobs:
 
       # Compile backend TypeScript
       - run: npm run tsc
+
+      - run:
+          name: Set up SSH key
+          command: |
+            mkdir -p ~/.ssh
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+            chmod 400 ~/.ssh/id_rsa
+            ssh-keyscan ec2-3-149-229-145.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
 
       # Deploy frontend to S3
       - run: aws s3 sync ./dist/kirby-online-store/ s3://udacity-bucket-doy
