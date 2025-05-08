@@ -1,13 +1,13 @@
 {   
 "dev":  {    
 	"driver": "pg",    
-	 "host": "127.0.0.1",    
+	 "host": "kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com",    
 	  "database": "kirby_store",   
 	   "user": "postgres",     
 	   "password": "postgres" },
 	   "test":  {    
 	"driver": "pg",    
-	 "host": "127.0.0.1",    
+	 "host": "kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com",    
 	  "database": "kirby_store_test",   
 	   "user": "postgres",     
 	   "password": "postgres" }
