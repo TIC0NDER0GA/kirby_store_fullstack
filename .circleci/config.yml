@@ -11,7 +11,9 @@ jobs:
           command: npm ci
       - run:
           name: Build frontend
-          command: npm run build
+          command: |
+            npm ci
+            npm run build || (echo "\n==== Build failed: Clearing node_modules and reinstalling dependencies ====" && rm -rf node_modules package-lock.json && npm ci && npm run build)
       - run:
           name: Compile backend
           command: npm run tsc
