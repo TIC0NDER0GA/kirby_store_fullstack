@@ -44,7 +44,7 @@ jobs:
             # Install PostgreSQL client before SSH (fix for 'psql: command not found')
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
             sudo yum update -y
-            sudo yum install -y postgresql15
+            sudo yum install -y postgresql17
             psql --version
             EOF
 
