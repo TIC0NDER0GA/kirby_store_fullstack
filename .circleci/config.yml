@@ -42,7 +42,8 @@ jobs:
             fi
 
             # Install PostgreSQL client before SSH (fix for 'psql: command not found')
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "sudo dnf install -y postgresql postgresql-server"
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
+              "sudo yum update -y && sudo yum install -y postgresql"
 
             # SSH into EC2 and install Node.js 20.x
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "curl -sL https://rpm.nodesource.com/setup_20.x | sudo -E bash - && sudo dnf install -y nodejs"
