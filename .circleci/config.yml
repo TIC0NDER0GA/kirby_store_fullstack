@@ -42,16 +42,17 @@ jobs:
             fi
 
             # Install PostgreSQL client before SSH (fix for 'psql: command not found')
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
-              "sudo yum update -y && sudo yum install -y postgresql"
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "sudo yum update -y && sudo yum install -y postgresql17 && psql --version"
 
             # SSH into EC2 and install Node.js 20.x
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "curl -sL https://rpm.nodesource.com/setup_20.x | sudo -E bash - && sudo dnf install -y nodejs"
 
-            # Create the dev and test databases
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c 'CREATE DATABASE kirby_store;'"
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c 'CREATE DATABASE kirby_store_test;'"
+            # Check if the database 'kirby_store' exists, if not, create it
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com 'PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'kirby_store'" | grep -q 1 || PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c "CREATE DATABASE kirby_store;"'
 
+            # Check if the database 'kirby_store_test' exists, if not, create it
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com 'PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'kirby_store_test'" | grep -q 1 || PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c "CREATE DATABASE kirby_store_test;"'
+              
             # Verify the databases were created
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c '\l'"
 
