@@ -67,6 +67,7 @@ jobs:
             # SSH into EC2 again, install dependencies, run migrations, and start the API
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "cd ~/app && export ENV=$ENV && npm install && npm run migrate-up && nohup npm run start_api &"
 
+
 workflows:
   build-deploy:
     jobs:
