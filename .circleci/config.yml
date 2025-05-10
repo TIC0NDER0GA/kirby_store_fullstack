@@ -41,7 +41,7 @@ jobs:
               exit 1
             fi
 
-            # Install PostgreSQL client before SSH (fix for 'psql: command not found')
+            # Install PostgreSQL client before SSH if not present
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< 'EOF'
             sudo yum update -y
             sudo yum install -y postgresql17
@@ -58,13 +58,15 @@ jobs:
             scp -r ./migrations/ ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
             scp ./package.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
 
-             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
-            "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -f /home/ec2-user/app/migrations/db_init/db_init.sql"
+            # Creates the prod and test DB
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
+            "PGPASSWORD=${POST_PASSWORD} psql -h ${POST_HOST} -U ${POST_USER} -d ${POST_DATABASE} -f /home/ec2-user/app/migrations/db_init/db_init.sql"
 
             # Verify the databases were created
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c '\l'"
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
+            "PGPASSWORD=${POST_PASSWORD} psql -h ${POST_HOST} -U ${POST_USER} -d ${POST_DATABASE} -c '\l'"
 
-            # SSH into EC2 again, install dependencies, run migrations, and start the API
+            # SSH into EC2 again, install dependencies, run migrations, and start the API in the background
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< EOF
             export POST_DATABASE=$POST_DATABASE
             export POST_DATABASE_TEST=$POST_DATABASE_TEST
