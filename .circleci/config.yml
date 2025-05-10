@@ -74,7 +74,7 @@ jobs:
             export POST_USER=$POST_USER
             export POST_PASSWORD=$POST_PASSWORD
             export ENV=$ENV
-            cd ~/app && npm install && npm run migrate-up && nohup npm run start_api &
+            cd ~/app && npm install && npm run migrate-up && nohup npm run start_api > start.log 2>&1 & disown
             EOF
 
 
