@@ -65,7 +65,15 @@ jobs:
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c '\l'"
 
             # SSH into EC2 again, install dependencies, run migrations, and start the API
-            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "cd ~/app && export ENV=$ENV && npm install && npm run migrate-up && nohup npm run start_api &"
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \<< EOF
+            export POST_DATABASE=$POST_DATABASE
+            export POST_DATABASE_TEST=$POST_DATABASE_TEST
+            export POST_HOST=$POST_HOST
+            export POST_USER=$POST_USER
+            export POST_PASSWORD=$POST_PASSWORD
+            export ENV=$ENV
+            cd ~/app && npm install && npm run migrate-up && nohup npm run start_api &
+            EOF
 
 
 workflows:
