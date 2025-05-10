@@ -70,6 +70,7 @@ const index = async (req: Request, res : Response) => {
         res.json(products);
 
     } catch (err) {
+        console.error(err);
         res.status(400);
         res.json(err);
     }

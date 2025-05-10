@@ -20,7 +20,7 @@ userRoutes(app);
 productRoutes(app);
 orderRoutes(app);
 
-app.listen(port,  () => {
-    console.log(`starting app on: ${port}`)
+app.listen(port, '0.0.0.0', () => {
+  console.log(`starting app on: ${port}`);
 });
 
