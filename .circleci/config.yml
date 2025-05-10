@@ -59,7 +59,7 @@ jobs:
             scp ./package.json ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com:/home/ec2-user/app/
 
              ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
-            "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -f /home/ec2-user/app/migrations/db_init/init_db.sql"
+            "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -f /home/ec2-user/app/migrations/db_init/db_init.sql"
 
             # Verify the databases were created
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c '\l'"
