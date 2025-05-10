@@ -22,7 +22,8 @@ switch (env) {
             host: POST_HOST,
             database: POST_DATABASE,
             user: POST_USER,
-            password: POST_PASSWORD
+            password: POST_PASSWORD,
+            ssl: { rejectUnauthorized: false },
         });
         break;
     case 'test':
@@ -30,7 +31,8 @@ switch (env) {
             host: POST_HOST,
             database: POST_DATABASE_TEST,
             user: POST_USER,
-            password: POST_PASSWORD
+            password: POST_PASSWORD,
+            ssl: { rejectUnauthorized: false },
         });
         break;
     case 'production':
@@ -39,7 +41,8 @@ switch (env) {
             host: POST_HOST,
             database: POST_DATABASE,
             user: POST_USER,
-            password: POST_PASSWORD
+            password: POST_PASSWORD,
+            ssl: { rejectUnauthorized: false },
         });
         break;
     default:
