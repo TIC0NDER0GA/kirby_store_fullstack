@@ -51,24 +51,9 @@ jobs:
             # SSH into EC2 and install Node.js 20.x
             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com "curl -sL https://rpm.nodesource.com/setup_20.x | sudo -E bash - && sudo dnf install -y nodejs"
 
-             ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
-              'PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -c $$
-                DO
-                $$
-                BEGIN
-                  IF NOT EXISTS (
-                      SELECT FROM pg_database WHERE datname = '\''kirby_store'\''
-                  ) THEN
-                      EXECUTE '\''CREATE DATABASE kirby_store'\'';
-                  END IF;
 
-                  IF NOT EXISTS (
-                      SELECT FROM pg_database WHERE datname = '\''kirby_store_test'\''
-                  ) THEN
-                      EXECUTE '\''CREATE DATABASE kirby_store_test'\'';
-                  END IF;
-                END
-                $$;' 
+            ssh -o StrictHostKeyChecking=no ec2-user@ec2-3-149-229-145.us-east-2.compute.amazonaws.com \
+            "PGPASSWORD=postgres psql -h kirby-1.c3oi20aaakf6.us-east-2.rds.amazonaws.com -U postgres -d postgres -f /home/ec2-user/app/migrations/db_init/init_db.sql"
 
               
             # Verify the databases were created
