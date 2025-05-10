@@ -13,7 +13,7 @@ export class AddcartService {
 
   constructor(private http: HttpClient) { }
 
-  ADDRESS: string = 'http://localhost:3000/';
+  ADDRESS: string = 'http://ec2-3-149-229-145.us-east-2.compute.amazonaws.com:3000/';
   
   
   

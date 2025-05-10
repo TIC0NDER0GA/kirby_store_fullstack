@@ -20,6 +20,7 @@ export class ProductService {
         category: '',
     }
 }
+ ADDRESS: string = 'http://ec2-3-149-229-145.us-east-2.compute.amazonaws.com:3000/';
 
   constructor(private http: HttpClient) { }
 
@@ -36,11 +37,11 @@ export class ProductService {
       }
     }
 
-    return this.http.get<Product>(`http://localhost:3000/products/${id}`);
+    return this.http.get<Product>(`${this.ADDRESS}products/${id}`);
   }
 
   getProducts = () : Observable<Product[]> => {
-    return this.http.get<Product[]>(`http://localhost:3000/products`);
+    return this.http.get<Product[]>(`${this.ADDRESS}products`);
   }
 
 
