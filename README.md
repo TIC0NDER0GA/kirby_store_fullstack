@@ -1,37 +1,40 @@
-# KirbyOnlineStore
+# KirbyOnlineStore - Developer Quick Guide
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+## 📄 Project Description
+KirbyOnlineStore is a full-stack eCommerce application featuring:
 
-## Running My code steps
-1. Install dependencies
-npm i
-  - Installs all necessary project dependencies
+- **Frontend**: Angular app hosted on AWS S3
+- **Backend**: Express/Node.js API running on an AWS EC2 instance
+- **Database**: PostgreSQL hosted on Amazon RDS
 
-2. Start Docker containers
-npm run dockerup
-  - Docker Desktop must be running in the background
-  - The PostgreSQL database runs on localhost:5432
+The app allows users  view products, create orders, and checkout their order.
 
-3. Run database migrations
-npm run migrate-up
-  - Seeds the database with provided test data
+---
 
-4. Start the Express server
-npm run start_api
-  - Starts the backend server
-  - API endpoints will be available at localhost:3000
+##  How to Set Up the Project and make changes
 
-5. Run the Angular frontend
-ng serve
-  - Compiles and runs the Angular app
-  - The frontend is available at localhost:4200
+1. Clone the repo and install dependencies with npm install
 
-6. Shut down Docker containers
-npm run dockerdown
-  - Stops Docker containers
-    - Clears the PostgreSQL databaase
-  - Don’t forget to stop the Express server with Ctrl + C
+2. Once you've committed all changes and pushed, the git repo will automatically start a build in circleci
 
+3. If there is more configuration needed the ./circleci/config.yml handles the CI/CD pipeline  
+
+
+```
+
+After deployment, the App is accessible at http://udacity-bucket-doy.s3-website.us-east-2.amazonaws.com/product.
+
+---
+
+## Useful Information
+
+- **Backend API** is accessible via EC2 public IP and port `3000`.
+- **Frontend** is served from S3 with public read access.
+- Make sure CORS on the backend allows requests from your S3.
+- EC2 Security Group must allow inbound traffic on port `3000` from your S3 or global IPs.
+- Environment variables for the backend (DB credentials, secrets, etc.) are managed via CircleCI and passed to the EC2 instance during deployment.
+
+---
 
 ## Copyright Disclaimer
 
@@ -42,3 +45,4 @@ These assets are used under the belief of **fair use**, for non-commercial, educ
 If you are a copyright holder and have any concerns, please contact me and I will address them promptly.
 
 <a href="https://www.vecteezy.com/free-vector/star">Star Vectors by Vecteezy</a>
+
